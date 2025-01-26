@@ -1,0 +1,178 @@
+:root {
+  --color-accent: crimson; /* Custom property for the accent color */
+  --font-size-base: 16px; /* Example of another custom property */
+}
+
+body {
+    /* Set line height to 1.5 times the font size
+         and use the OS’s UI font as the website font
+       */
+    font: 100%/1.5 system-ui;
+    max-width: 70ch;
+    margin-inline: auto;
+  }
+
+html {
+    color-scheme: light dark;
+
+  }
+
+.color-scheme {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 80%;
+    font-family: inherit;
+  }
+  
+
+
+ul {
+    display: contents; /* Removes the visual wrapper, if desired */
+    list-style: none; /* Removes default bullets */
+    padding: 0; /* Removes default padding */
+    margin: 0; /* Removes default margin */
+}
+
+
+li {
+  display: contents; /* Allows <li> to disappear visually */
+}
+
+a {
+  text-decoration: none; /* Removes underline */
+  color: blue; /* Sets text color */
+  padding: 0.5em; /* Adds padding */
+}
+
+nav {
+  display: flex; /* Enables Flexbox */
+  justify-content: space-between; /* Spaces out the links evenly */
+  border-bottom: 1px solid #ccc; /* Optional: Adds a separator */
+  padding-bottom: 0.5em; /* Adds space below links */
+  --border-color: oklch(50% 10% 200 / 40%);
+}
+
+
+nav a {
+  flex: 1; /* Makes all links take up equal space */
+  text-align: center; /* Centers text within each link */
+  text-decoration: none; /* Removes the underline */
+  color: inherit;
+  /* Default link color */
+  padding: 0.5em; /* Adds padding for clickable area */
+  margin-bottom: 1em;
+  border-bottom: 1px solid oklch(80% 3% 200);
+}
+
+nav a:hover {
+  /* Optional: Highlight on hover */
+  background-color: color-mix(in oklch, var(--color-accent), canvas 85%);
+}
+
+nav a.current {
+   /* Highlights the active link */
+  font-weight: bold;
+  border-bottom: 0.4em solid var(--color-accent);
+  font-weight: bold; /* Makes it stand out */
+}
+
+form {
+  display: grid; /* Enables grid layout */
+  grid-template-columns: subgrid; /* Use the parent's grid columns */
+  gap: 1em; /* Add spacing between rows */
+  max-width: 600px;
+  padding: 1em;
+  border: 1px solid #ccc;
+  border-radius: 0.5em;
+  background-color: #f9f9f9;
+}
+
+/* Labels */
+form label {
+  grid-column: 1 / 2; /* Place labels in the first subgrid column */
+  text-align: right; /* Align text to the right */
+  font-weight: bold;
+}
+
+/* Inputs and Textareas */
+form input,
+form textarea {
+  grid-column: 2 / 3; /* Place inputs in the second subgrid column */
+  width: 100%;
+  padding: 0.5em;
+  border: 1px solid #ccc;
+  border-radius: 0.25em;
+  font-size: 1em;
+  box-sizing: border-box;
+}
+
+/* Button */
+form button {
+  grid-column: 1 / -1; /* Span across all columns */
+  padding: 0.75em;
+  font-size: 1em;
+  color: white;
+  background-color: crimson;
+  border: none;
+  border-radius: 0.25em;
+  cursor: pointer;
+}
+
+form button:hover {
+  background-color: darkred;
+}
+
+
+/***** PROJECTS SECTION *****/
+
+/* Projects Page Layout */
+.projects {
+  display: grid; /* Enable grid layout */
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive grid */
+  gap: 1em; /* Space between project cards */
+  max-width: 1200px;
+  margin: 0 auto; /* Center the grid */
+  padding: 2em;
+}
+
+/* Individual Project Card */
+.project-card {
+  display: flex;
+  flex-direction: column; /* Stack content vertically */
+  padding: 1em;
+  border: 1px solid #ccc;
+  border-radius: 0.5em;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: subtle shadow */
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s; /* Add animation */
+}
+
+.project-card:hover {
+  transform: scale(1.05); /* Slight zoom effect */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Enhance shadow */
+}
+
+/* Project Image */
+.project-card img {
+  max-width: 100%;
+  height: auto;
+  object-fit: cover; /* Ensure it scales correctly */
+  border-radius: 0.5em;
+  margin-bottom: 1em;
+}
+
+
+/* Project Title */
+.project-card h2 {
+  font-size: 1.5em;
+  margin-bottom: 0.5em;
+}
+
+/* Project Description */
+.project-card p {
+  font-size: 1em;
+  line-height: 1.5;
+  color: #555;
+}
