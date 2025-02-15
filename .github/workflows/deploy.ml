@@ -9,6 +9,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4

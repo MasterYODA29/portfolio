@@ -38,7 +38,7 @@ let pages = [
     else if (!ARE_WE_HOME && !url.startsWith('http')) {
         url = '../' + url;
       }
-    
+
     // nav.insertAdjacentHTML('beforeend', `<a href="${url}">${title}</a>`);
     let a = document.createElement('a');
     a.href = url;
@@ -75,7 +75,55 @@ select.addEventListener('input', function (event) {
     localStorage.colorScheme = value;
 });
 
-  
+export async function fetchJSON(url) {
+  try {
+      // Fetch the JSON file from the given URL
+      const response = await fetch(url);
+      if (!response.ok) {
+        throw new Error(`Failed to fetch projects: ${response.statusText}`);
+
+    }
+    const data = await response.json();
+    console.log('Fetched JSON:', data); // Debugging: Check JSON data
+    return data;
+
+  } catch (error) {
+      console.error('Error fetching or parsing JSON data:', error);
+  }
+}
+
+window.fetchJSON = fetchJSON;
+
+export function renderProjects(projects, containerElement, headingLevel='h2') {
+  containerElement.innerHTML = '';
+
+  const projectsTitle = document.querySelector('.projects-title');
+
+  if (projectsTitle) {
+    projectsTitle.textContent = projects.length;
+  }
+
+  projects.forEach(project =>{
+
+    console.log("Rendering Project:", project);
+    const article=document.createElement('article');
+    article.innerHTML=`
+    
+    <${headingLevel}>${project.title}</${headingLevel}>
+    <img src="${project.image}" alt="${project.title}">
+    <p>${project.description}</p>
+    <p class="project-year"><em>c. ${project.year}</em></p>
+    `;
+    containerElement.appendChild(article);
+
+  });
+
+}
+
+export async function fetchGitHubData (username)
+{
+  return fetchJSON(`https://api.github.com/users/${'MasterYODA29'}`)
+}
   
   
  

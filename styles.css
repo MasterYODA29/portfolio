@@ -4,13 +4,14 @@
 }
 
 body {
-    /* Set line height to 1.5 times the font size
-         and use the OS’s UI font as the website font
-       */
-    font: 100%/1.5 system-ui;
-    max-width: 70ch;
-    margin-inline: auto;
-  }
+  /* Set line height to 1.5 times the font size
+       and use the OS’s UI font as the website font
+     */
+  font: 100%/1.5 system-ui;
+  max-width: 70ch;
+  margin-inline: auto;
+}
+
 
 html {
     color-scheme: light dark;
@@ -176,3 +177,202 @@ form button:hover {
   line-height: 1.5;
   color: #555;
 }
+
+.projects article {
+  max-width: 600px; /* Limits width */
+  margin: 0 auto; /* Centers content */
+  padding: 10px;
+  text-align: center; /* Keeps titles centered */
+}
+
+.projects article h2 {
+  font-size: 1.0 rem !important; /* Smaller title text */
+  font-weight: bold;
+  text-transform: capitalize; /* Keeps consistent capitalization */
+  margin-bottom: 5px; /* Reduce gap */
+}
+
+.projects article p {
+  font-size: 1rem; /* Reduces paragraph text */
+  line-height: 1.4; /* Reduces extra spacing */
+  color: #444; /* Slightly softer text color */
+  text-align: justify; /* Improves readability */
+}
+
+#projects-pie-plot {
+  max-width: 20em;
+  margin-block: 2em;
+
+  overflow: visible;
+}
+
+/* Lab 5 addition */
+
+.legend {
+  flex: 1;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.legend li {
+  display: flex !important;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.swatch {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  margin-right: 10px;
+  background-color: var(--color);
+}
+
+.container {
+  display: flex; /* Enables horizontal layout for the pie chart and legend */
+  justify-content: center; /* Centers the content horizontally */
+  align-items: center; /* Aligns the pie chart and legend vertically */
+  gap: 2em; /* Adjusts spacing between the pie chart and legend */
+  margin: 2em auto; /* Adds vertical spacing and centers the container */
+}
+
+/* Hover for Lab step 5 */
+/* Smooth transition for hover and click effects */
+path {
+  transition: 300ms;
+  cursor: pointer; /* Make the pie chart interactive */
+}
+
+/* Fade out non-hovered wedges */
+svg:has(path:hover) path:not(:hover) {
+  opacity: 0.5;
+}
+
+/* Highlight the selected pie wedge */
+path.selected {
+  fill: oklch(60% 45% 0) !important; /* Use your preferred highlight color */
+  opacity: 1; /* Ensure the selected wedge is fully visible */
+}
+
+#projects-pie-plot path {
+  pointer-events: all;
+}
+
+/* Style the stats container */
+.gridlines .tick line {
+  stroke: #ddd; /* Light gray lines */
+  stroke-width: 1; /* Thin lines */
+  stroke-dasharray: 2 2; /* Dotted lines */
+}
+
+.gridlines .tick line:nth-child(even) {
+  stroke: #f0f0f0; /* Even lighter for alternate lines */
+}
+
+.gridlines .tick line:nth-child(odd) {
+  stroke: lightblue; /* Slightly blue for odd lines */
+}
+
+/* lab 6 containers
+ */
+
+ .dots circle {
+  fill: steelblue; /* Distinct color for dots */
+  stroke: black; /* Outline for visibility */
+  stroke-width: 0.5;
+}
+
+.x-axis text, .y-axis text {
+  font-size: 12px;
+  fill: #333; /* Dark gray for visibility */
+  font-family: Arial, sans-serif; /* Ensure readable font */
+}
+
+.x-axis path, .y-axis path {
+  stroke: black; /* Axis lines in black */
+  stroke-width: 1;
+}
+
+.x-axis line, .y-axis line {
+  stroke: #ccc; /* Light gray for tick marks */
+}
+
+
+/* STEP 3 Lab */
+
+/* Styling for .info (grid layout for definition list) */
+dl.info {
+  display: grid;
+  grid-template-columns: auto 1fr; /* Two columns: labels in the first column, values in the second */
+  gap: 0.5em; /* Space between rows */
+  margin: 0; /* Remove default margins */
+  padding: 0; /* Remove default padding */
+
+  transition-duration: 500ms;
+  transition-property: opacity, visibility;
+}
+
+dl.info[hidden]:not(:hover, :focus-within) {
+  opacity: 0;
+  visibility: hidden;
+}
+
+dl.info dt {
+  font-weight: bold; /* Emphasize labels */
+  color: #666; /* Less prominent color for labels */
+}
+
+dl.info dd {
+  margin: 0; /* Remove default margins */
+}
+
+/* Styling for .tooltip */
+.tooltip {
+  position: fixed;
+  top: 1em;
+  left: 1em;
+  background: white;
+  border: 1px solid #ccc;
+  padding: 0.5em;
+  border-radius: 0.5em;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Hover effect for circles (dots on the scatterplot) */
+circle {
+  transition: 200ms; /* Smooth transition */
+  transform-origin: center; /* Scale from the center */
+  transform-box: fill-box; /* Account for SVG fill */
+  pointer-events: all;
+}
+
+circle:hover {
+  transform: scale(1.5); /* Enlarge on hover */
+}
+
+circle.selected {
+  fill: #ff6b6b;
+}
+
+/* step 3.3/3.4 */
+
+#commit-tooltip {
+  position: fixed;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 0.5em;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+#commit-tooltip:not([hidden]) {
+  opacity: 1;
+  visibility: visible;
+}
+
+
+
